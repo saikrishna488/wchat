@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { BiUser } from "react-icons/bi";
+import {AiOutlineSend} from "react-icons/ai"
 import { socket } from "../../../socket/socket"
 
 const index = () => {
@@ -106,13 +107,13 @@ const index = () => {
     <div className="container">
       <div className="chat-box">
         <div className="users-list">
-          <h5>Online :</h5>
+          <h5>Users Online :</h5>
           {users
             ? users.map((user, i) => {
                 return (
-                  <h4 className="user" key={i}>
+                  <h5 className="user" key={i}>
                     {user}
-                  </h4>
+                  </h5>
                 );
               })
             : null}
@@ -138,7 +139,7 @@ const index = () => {
             onChange={(e) => setMessage(e.target.value)}
             value={message}
           />
-          <button onClick={sendMessage}>Send</button>
+            <AiOutlineSend  onClick={sendMessage} className="button" size={25}/>
         </div>
       </div>
     </div>
