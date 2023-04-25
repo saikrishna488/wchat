@@ -11,7 +11,7 @@ app.use(cors());
 
 const io = new Server(server,{
     cors: {
-        origin: '*', // allow to connect from any origin
+        origin: 'https://wchat-frontned.vercel.app', // allow to connect from any origin
         methods: ["GET", "POST"]
     }
 });
