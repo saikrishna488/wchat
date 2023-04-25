@@ -2,98 +2,71 @@ import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { BiUser } from "react-icons/bi";
 import {AiOutlineSend} from "react-icons/ai"
-import { socket } from "../../../socket/socket"
+import { socket } from "../../socket/socket"
 
 const index = () => {
-  const [username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
+  const [random,setRandom] = useState('');
+  const [room,setRoom] = useState('');
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
-  const [users, setUsers] = useState([]);
-  const [connected,setConnected] = useState(false)
+  const [users, setUsers] = useState(8);
+  const [connected,setConnected] = useState(false);
+  const [disabledd,setDisabledd] = useState(false);
+  const [status,setStatus] = useState('');
   const ref = useRef();
   const ref2 = useRef();
   const router = useRouter();
 
   useEffect(() => {
 
-      if (!sessionStorage.getItem("username")) {
-        router.push("/room");
+      if (!sessionStorage.getItem("random")) {
+        router.push("/");
         return;
       }
 
-      let data = sessionStorage.getItem("username");
-      let data1 = sessionStorage.getItem("room");
-
-      setUsername((d) => data);
-      setRoom((s) => data1);
-      
-      if (sessionStorage.getItem("messages")) {
-        setMessages(JSON.parse(sessionStorage.getItem("messages")));
-      }
+      let ran = sessionStorage.getItem("random");
+      setRandom(ran);
 
       //connect to server
       if(!connected){
-        socket.emit('joinRoom',{username:data,room:data1});
+        socket.emit('connect-ran','data');
         setConnected(true);
       }
       
-
       //users online
-      socket.on("users-all", (data) => {
-        console.log(data)
-        let arr = []
-        data.map((user)=>{
-          arr = [...arr,user.username];
-        });
-        // setUsers(()=>{
-        //   return [arr]
-        // })
-        setUsers(arr)
+      socket.on("online", (data) => {
+        setUsers(data);
       });
 
-      //user-left
-      socket.on("users-left", (data) => {
-        console.log(data)
-        let arr = []
-        data.map((user)=>{
-          arr = [...arr,user.username];
-        });
-        // setUsers(()=>{
-        //   return [arr]
-        // })
-        setUsers(arr)
+      //status
+      socket.on('status',(data)=>{
+        console.log(data);
+        setStatus(()=> data.msg);
+        sessionStorage.setItem('room',data.room);
+        setRoom(()=>data.room);
       });
 
       //new message
-      socket.on("new-message", (data) => {
+      socket.on("random-receive", (data) => {
+        console.log(data);
         let data1 = {
           class: "left",
-          username: data.username,
-          message: data.message,
+          username: "stranger",
+          message: data,
         };
         setMessages((messages) => {
           return [...messages, data1];
         });
         ref.current ? ref.current.scrollTop = ref.current.scrollHeight : null
-        sessionStorage.setItem("messages", JSON.stringify(messages));
-      });
-
-      //if new user joined
-      socket.on("user-joined", (data) => {
-        let data1 = { class: "left", username: "user joined ", message: data };
-        setMessages((messages) => {
-          return [...messages, data1];
-        });
-        sessionStorage.setItem("messages", JSON.stringify(messages));
       });
 
   }, []);
 
+
   const sendMessage = () => {
     if (message) {
-      socket.emit("message", { message, username, room });
-      let data1 = { class: "right", username, message };
+      socket.emit("random-msg", {msg:message,room:room});
+      let data1 = { class: "right", username : "you", message };
       setMessages((messages) => {
         return [...messages, data1];
       });
@@ -107,17 +80,8 @@ const index = () => {
     <div className="container">
       <div className="chat-box">
         <div className="users-list">
-          <span className="static">Users Online :</span>
-          {users
-            ? users.map((user, i) => {
-                return (
-                    <p className="user" key={i}>
-                    {user}
-                    </p>
-                  
-                );
-              })
-            : null}
+          <span className="static">Users Online : {users}</span>
+          <span className="static"><b>{status}</b></span> 
                     
         </div>
         <div ref={ref} className="msg-box">
@@ -138,11 +102,13 @@ const index = () => {
             : null}
         </div>
         <div className="input-box">
+        <button className="next-btn" onClick={()=> router.reload()}>Next</button>     
           <input
             type="text"
             ref={ref2}
             onChange={(e) => setMessage(e.target.value)}
             value={message}
+            {...disabledd ? disabled : null }
           />
             <AiOutlineSend  onClick={sendMessage} className="button" size={25}/>
         </div>

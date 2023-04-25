@@ -42,13 +42,27 @@ input[type=number] {
   padding: 10px;
 }
 .box input{
-  width: 100%;
+  width: 80%;
   padding: 10px;
   border: none;
   border-bottom: 1px solid rgb(33, 31, 31);
   outline: none;
   font-size: medium;
   margin-bottom: 10px;
+}
+
+.btn-main{
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  color : white;
+  background-color: green;
+  width: 100%;
+  font-size: medium;
+  margin: 5px;
+  width: 200px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
 #btn{
@@ -70,7 +84,7 @@ input[type=number] {
   border-radius: 10px;
   padding: 0px;
   height: 80%;
-  width: 800px;
+  width: 67%;
   padding: 8px;
 }
 
@@ -99,6 +113,7 @@ input[type=number] {
 }
 
 .users-list{
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -126,6 +141,20 @@ input[type=number] {
   color: white;
   margin: 0px 5px;
   /* height: 20px; */
+}
+
+.next-btn{
+  margin:2px;
+  right: 20px;
+  color: white;
+  border: none;
+  padding: 0px 20px;
+  border-radius: 12px;
+  height: 94%;
+  background-color: black;
+}
+.next-btn:hover{
+  scale: 0.8;
 }
 
 .msg-box{
