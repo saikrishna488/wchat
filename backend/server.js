@@ -55,4 +55,8 @@ io.on('connection', (socket) => {
     });
 });
 
+app.get('/',(req,res)=>{
+    res.send("backend !!!!"):
+});
+
 server.listen(port, ()=> console.log("Server has been started on port "+ port));
