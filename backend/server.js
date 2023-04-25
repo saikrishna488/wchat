@@ -24,8 +24,10 @@ io.on('connection', (socket) => {
             username :data.username,
             room : data.room
         });
+        let arr = (users.filter((user) => user.room == data.room))
+        console.log(arr);
         socket.join(data.room)
-        io.in(data.room).emit('users-all',users);
+        arr ? io.in(data.room).emit('users-all',arr) : null;
         console.log(users);
         io.in(data.room).emit('user-joined', data.username+" has joined the chat");
     })
@@ -44,12 +46,13 @@ io.on('connection', (socket) => {
     socket.on("disconnect", () => {
         let room = users.find(user => user.id == socket.id);
         if(room){
-            socket.broadcast.emit('new-message', {
+            socket.broadcast.to(room.room).emit('new-message', {
                 username : room.username ? room.username : "user-unknown",
                 message : "user left the chat"
             });
             users = users.filter(user => user.id !== socket.id);
-            io.in(room.room).emit('users-left',users);
+            let arr = (users.filter((user) => user.room == room.room))
+            io.in(room.room).emit('users-left',arr);
             console.log(users);
         }
     });
