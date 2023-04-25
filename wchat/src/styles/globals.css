@@ -30,6 +30,8 @@ input[type=number] {
 
 .toast{
   color: white;
+  word-break: break-all;
+  margin: 10px 15px;
 }
 .box{
   display: flex;
