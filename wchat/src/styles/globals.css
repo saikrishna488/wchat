@@ -99,7 +99,7 @@ input[type=number] {
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
   background-color: rgb(254, 254, 254);
   height: 10%;
   width: 100%;
@@ -111,8 +111,9 @@ input[type=number] {
   background-color: black;
   border-radius: 12px;
   color: white;
-  padding: 8px;
+  padding: 4px 8px;
   margin: 0px 5px;
+  white-space:nowrap;
 }
 
 .msg-box{
@@ -134,16 +135,18 @@ input[type=number] {
 .left{
   width: 50%;
   align-self: flex-start;
-  word-wrap: break-word;
   text-align: left;
   font-size: large;
+  word-break: break-all;
+  white-space:normal;
 }
 .right{
   width: 50%;
-  word-wrap: break-word;
   align-self: flex-end;
-  text-align: right;
+  text-align: justify;
   font-size: large;
+  word-break: break-all;
+  white-space: normal;
 }
 
 .input-box{
@@ -162,22 +165,12 @@ input[type=number] {
   border: none;
   outline: none;
   font-size: large;
+  background-color: transparent;
 }
-.input-box button{
-  border: none;
-  background-color: green;
-  color: white;
-  margin: 2px 5px;
-  padding: 5px 15px;
-  border-radius: 5px;
-  font-size: large;
+.input-box .button{
+  margin: 2px 10px;
+  cursor: pointer;
 }
-.input-box button:hover{
-  border: none;
-  background-color: lightgreen;
-  color: black;
-  margin: 2px 5px;
-  padding: 5px 15px;
-  border-radius: 5px;
-  font-size: large;
+.input-box .button:hover{
+  scale: 1.2;
 }
