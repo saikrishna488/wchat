@@ -122,12 +122,15 @@ const index = () => {
           {messages
             ? messages.map((msg, i) => {
                 return (
-                  <div className={msg.class} key={i}>
-                    <p className="mesg-text">
-                      {<BiUser />}
-                      {msg.username + " : " + msg.message}
+                    <div className={msg.class} key={i}>
+                      <div>
+                      {<BiUser />} <span><b>{msg.class == 'right' ? 'you': msg.username }</b></span>
+                      </div>
+                    <p className="msg-text">
+                      {msg.message}
                     </p>
                   </div>
+                  
                 );
               })
             : null}

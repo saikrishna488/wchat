@@ -131,24 +131,39 @@ input[type=number] {
   overflow-y: auto;
 }
 
-
-  
-
 .left{
-  width: 50%;
+  width: 88%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
   align-self: flex-start;
-  text-align: left;
+  text-align: justify;
   font-size: large;
   word-break: break-all;
   white-space:normal;
+  background-color: rgb(216, 239, 212);
+  border-radius: 12px;
+  padding: 1px 5px;
+  margin: 5px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 .right{
-  width: 50%;
+  width: 88%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: column;
   align-self: flex-end;
   text-align: justify;
   font-size: large;
   word-break: break-all;
   white-space: normal;
+  background-color: rgb(191, 208, 228);
+  border-radius: 12px;
+  padding: 1px 5px;
+  margin: 5px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .input-box{
