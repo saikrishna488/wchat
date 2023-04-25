@@ -100,12 +100,18 @@ input[type=number] {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   background-color: rgb(254, 254, 254);
   height: 10%;
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  padding: 5px;
+}
+
+.static{
+  width: fit-content;
+  white-space: nowrap !important;
 }
 
 .user{
