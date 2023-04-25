@@ -12,7 +12,15 @@ export default function Home() {
 
   const submit = ()=>{
     if(username.length < 3){
+      setVisible(true);
       setText('username must be atleast of 3 characters');
+      setTimeout(()=>{
+        setVisible(false);
+      },2000)
+    }
+    else if(username.length >12){
+      setVisible(true);
+      setText('username cannot be more than 12 characters');
       setTimeout(()=>{
         setVisible(false);
       },2000)
