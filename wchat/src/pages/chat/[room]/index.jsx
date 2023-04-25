@@ -74,6 +74,7 @@ const index = () => {
         setMessages((messages) => {
           return [...messages, data1];
         });
+        ref.current ? ref.current.scrollTop = ref.current.scrollHeight : null
         sessionStorage.setItem("messages", JSON.stringify(messages));
       });
 
@@ -97,6 +98,7 @@ const index = () => {
       });
       sessionStorage.setItem("messages", JSON.stringify(messages));
       setMessage("");
+      ref.current ? ref.current.scrollTop = ref.current.scrollHeight : null
       ref2.current ? ref2.current.focus() : null;
     }
   };
