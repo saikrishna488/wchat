@@ -37,7 +37,7 @@ input[type=number] {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(186, 46, 46);
   border-radius: 10px;
   padding: 10px;
 }
@@ -67,9 +67,10 @@ input[type=number] {
   justify-content: center;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  padding: 10px;
+  padding: 0px;
   height: 80%;
   width: 800px;
+  padding: 8px;
 }
 
 @media screen and (max-width: 952px) {
@@ -106,21 +107,21 @@ input[type=number] {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 5px;
+  padding: 0px;
 }
 
 .static{
-  width: fit-content;
-  white-space: nowrap !important;
+  white-space: nowrap;
+  margin: 0px 5px;
 }
 
 .user{
   background-color: black;
   border-radius: 12px;
+  padding: 4px 10px;
   color: white;
-  padding: 4px 8px;
   margin: 0px 5px;
-  white-space:nowrap;
+  /* height: 20px; */
 }
 
 .msg-box{
@@ -129,8 +130,8 @@ input[type=number] {
   /* align-items: center; */
   /* justify-content: center; */
   background-color: rgb(131, 170, 105);
-  padding: 10px;
-  margin: 10px;
+  padding: 0px;
+  /* margin: 10px; */
   height: 80%;
   width: 100%;
   overflow-y: auto;

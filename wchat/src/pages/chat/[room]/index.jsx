@@ -107,16 +107,18 @@ const index = () => {
     <div className="container">
       <div className="chat-box">
         <div className="users-list">
-          <h5>Users Online :</h5>
+          <span className="static">Users Online :</span>
           {users
             ? users.map((user, i) => {
                 return (
-                  <h5 className="user" key={i}>
+                    <p className="user" key={i}>
                     {user}
-                  </h5>
+                    </p>
+                  
                 );
               })
             : null}
+                    
         </div>
         <div ref={ref} className="msg-box">
           {messages
