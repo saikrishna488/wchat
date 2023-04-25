@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins:wght@300&display=swap');
+body{
+  margin: 0;
+  padding: 0;
+  /* color: white; */
+  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* chrome&* */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgb(33, 31, 31);
+}
+
+.toast{
+  color: white;
+}
+.box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 10px;
+}
+.box input{
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid rgb(33, 31, 31);
+  outline: none;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+#btn{
+  padding: 10px;
+  border: none;
+  color : white;
+  background-color: green;
+  width: 100%;
+  font-size: 14px;
+}
+
+.chat-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 10px;
+  height: 80%;
+  width: 50%;
+}
+
+.users-list{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+  background-color: rgb(254, 254, 254);
+  height: 10%;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.user{
+  background-color: black;
+  border-radius: 12px;
+  color: white;
+  padding: 8px;
+  margin: 0px 5px;
+}
+
+.msg-box{
+  display: flex !important;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  background-color: rgb(131, 170, 105);
+  padding: 10px;
+  margin: 10px;
+  height: 80%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.left{
+  width: 50%;
+  align-self: flex-start;
+  word-wrap: break-word;
+  text-align: left;
+  font-size: large;
+}
+.right{
+  width: 50%;
+  word-wrap: break-word;
+  align-self: flex-end;
+  text-align: right;
+  font-size: large;
+}
+
+.input-box{
+  display: flex;
+  flex-direction: row;
+  height: 10%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+.input-box input{
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: large;
+}
+.input-box button{
+  border: none;
+  background-color: green;
+  color: white;
+  margin: 2px 5px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: large;
+}
+.input-box button:hover{
+  border: none;
+  background-color: lightgreen;
+  color: black;
+  margin: 2px 5px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: large;
+}
