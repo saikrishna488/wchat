@@ -168,17 +168,17 @@ input[type=number] {
   text-align: justify;
   font-size: large;
   word-break: break-all;
-  white-space: normal;
+  flex-wrap: wrap;
   background-color: rgb(191, 208, 228);
   border-radius: 12px;
   padding: 1px 5px;
   margin: 5px;
+  /* height: 200px; */
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .msg-text{
   padding: 0;
-  max-height: 20px;
   font-size: large;
   margin: 5px 0;
 }
