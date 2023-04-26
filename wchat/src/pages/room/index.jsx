@@ -30,7 +30,7 @@ export default function Home() {
       let roomStr = roomNum.toString();
       if(roomStr.length < 5){
         setVisible(true);
-        setText('room must be atleast of 5 digits number');
+        setText('room must be atleast of 5 digit number');
         setTimeout(()=>{
           setVisible(false);
         },2000)
