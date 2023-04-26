@@ -10,7 +10,6 @@ const index = () => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [users, setUsers] = useState([]);
-  const [connected,setConnected] = useState(false)
   const ref = useRef();
   const ref2 = useRef();
   const router = useRouter();
@@ -26,22 +25,25 @@ const index = () => {
       let data1 = sessionStorage.getItem("room");
 
       setUsername((d) => data);
-      setRoom((s) => data1);
-      
-      if (sessionStorage.getItem("messages")) {
-        setMessages(JSON.parse(sessionStorage.getItem("messages")));
+      setRoom((s) => data1);  
+
+      window.onpopstate = ()=>{
+        socket.close();
       }
+
 
       //connect to server
-      if(!connected){
+      if(socket.connected) {
+        socket.emit('reconnected',(dRoom));
+        console.log(socket.id);
+      }
+      else{
+        socket.connect();
         socket.emit('joinRoom',{username:data,room:data1});
-        setConnected(true);
       }
       
-
       //users online
       socket.on("users-all", (data) => {
-        console.log(data)
         let arr = []
         data.map((user)=>{
           arr = [...arr,user.username];
@@ -54,7 +56,6 @@ const index = () => {
 
       //user-left
       socket.on("users-left", (data) => {
-        console.log(data)
         let arr = []
         data.map((user)=>{
           arr = [...arr,user.username];
@@ -76,7 +77,6 @@ const index = () => {
           return [...messages, data1];
         });
         ref.current ? ref.current.scrollTop = ref.current.scrollHeight : null
-        sessionStorage.setItem("messages", JSON.stringify(messages));
       });
 
       //if new user joined
@@ -85,7 +85,6 @@ const index = () => {
         setMessages((messages) => {
           return [...messages, data1];
         });
-        sessionStorage.setItem("messages", JSON.stringify(messages));
       });
 
   }, []);
@@ -97,7 +96,6 @@ const index = () => {
       setMessages((messages) => {
         return [...messages, data1];
       });
-      sessionStorage.setItem("messages", JSON.stringify(messages));
       setMessage("");
       ref.current ? ref.current.scrollTop = ref.current.scrollHeight : null
       ref2.current ? ref2.current.focus() : null;

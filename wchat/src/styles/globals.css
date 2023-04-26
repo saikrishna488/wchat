@@ -62,7 +62,12 @@ input[type=number] {
   margin: 5px;
   width: 200px;
   border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  
+}
+.btn-main:hover{
+  scale: 0.9;
+  color:green;
+  background-color: black;
 }
 
 #btn{
@@ -96,21 +101,11 @@ input[type=number] {
 
 @media screen and (max-width: 702px) {
   .chat-box{
-    width: 500px !important;
+    width: 100% !important;
+    height: 100%;
   }
 }
 
-@media screen and (max-width: 566px) {
-  .chat-box{
-    width: 400px !important;
-  }
-}
-
-@media screen and (max-width: 448px) {
-  .chat-box{
-    width: 340px !important;
-  }
-}
 
 .users-list{
   position: relative;
