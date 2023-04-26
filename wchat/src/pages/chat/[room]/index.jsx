@@ -18,6 +18,7 @@ const index = () => {
   useEffect(() => {
 
       if (!sessionStorage.getItem("username")) {
+        socket.close();
         router.push("/room");
         return;
       }
