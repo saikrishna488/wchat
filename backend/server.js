@@ -58,6 +58,13 @@ io.on("connection", (socket) => {
     }
   });
 
+  //invalid-user
+  socket.on('invalid-user',()=>{
+    console.log('invalid user');
+    room = null;
+  })
+
+
   socket.on("random-msg", ({ msg, room }) => {
     console.log(msg, room);
     socket.broadcast.to(room + 4).emit("random-receive", msg);
