@@ -97,6 +97,7 @@ const index = () => {
     if (token) {
       if (token == 2) {
       } else {
+        setMessages([])
         setUsers(8);
         socket.disconnect();
         socket.connect();
