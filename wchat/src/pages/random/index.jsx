@@ -90,6 +90,7 @@ const index = () => {
     if (token) {
       if (token == 2) {
       } else {
+        setUsers(8);
         socket.disconnect();
         socket.connect();
         socket.emit("connect-ran", "data");
