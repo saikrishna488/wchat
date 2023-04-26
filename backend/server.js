@@ -32,9 +32,10 @@ io.on("connection", (socket) => {
     io.emit("online", randoms.length);
     if (room && room != socket.id && randoms.length>1) {
       socket.join(room + 4);
-      console.log("user joined the room");
+      console.log("user joined the room",room);
       let data = {
         msg: "you are connected with stranger",
+        token:4,
         room,
       };
       conn.push({
@@ -47,9 +48,10 @@ io.on("connection", (socket) => {
     } else {
       room = socket.id;
       socket.join(room + 4);
-      console.log("waiting for stranger");
+      console.log("waiting for stranger",room);
       let data = {
         msg: "waiting for stranger",
+        token : 2,
         room,
       };
       io.in(room + 4).emit("status", data);
@@ -118,6 +120,7 @@ io.on("connection", (socket) => {
       io.emit("online", randoms.length);
       let data = {
         msg: "stranger left the chat",
+        token:4,
         room: socket.id,
       };
 
