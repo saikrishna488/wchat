@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { BiUser } from "react-icons/bi";
 import {AiOutlineSend} from "react-icons/ai"
 import { socket } from "../../../socket/socket"
+import Loading from "../../../components/Loading";
 
 const index = () => {
   const [username, setUsername] = useState("");
@@ -102,7 +103,10 @@ const index = () => {
     }
   };
   return (
-    <div className="container">
+    <>
+    {
+      users.length < 1 ? <Loading/> :
+      <div className="container">
       <div className="chat-box">
         <div className="users-list">
           <span className="static">Users Online :</span>
@@ -146,6 +150,10 @@ const index = () => {
         </div>
       </div>
     </div>
+    }
+    
+    </>
+    
   );
 };
 

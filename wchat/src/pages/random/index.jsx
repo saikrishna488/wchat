@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { BiUser } from "react-icons/bi";
 import { AiOutlineSend } from "react-icons/ai";
 import { socket } from "../../socket/socket";
+import Loading from "../../components/Loading";
 
 const index = () => {
   const [random, setRandom] = useState("");
@@ -11,6 +12,7 @@ const index = () => {
   const [message, setMessage] = useState("");
   const [users, setUsers] = useState(8);
   const [disabledd, setDisabledd] = useState(false);
+  const [token, setToken] = useState(null);
   const [status, setStatus] = useState("");
   const ref = useRef();
   const ref2 = useRef();
@@ -22,20 +24,19 @@ const index = () => {
       return;
     }
 
-    window.onpopstate = ()=>{
+    window.onpopstate = () => {
       socket.close();
-    }
-    let dRoom = sessionStorage.getItem('room');
+    };
+    let dRoom = sessionStorage.getItem("room");
 
     let ran = sessionStorage.getItem("random");
     setRandom(ran);
 
     //connect to server
-    if(socket.connected) {
-      socket.emit('reconnected',(dRoom));
+    if (socket.connected) {
+      socket.emit("reconnected", dRoom);
       console.log(socket.id);
-    }
-    else{
+    } else {
       socket.connect();
       socket.emit("connect-ran", ran);
     }
@@ -50,8 +51,9 @@ const index = () => {
       console.log(data);
       setStatus(() => data.msg);
       sessionStorage.setItem("room", data.room);
-      sessionStorage.setItem('room',data.room);
+      sessionStorage.setItem("room", data.room);
       setRoom(() => data.room);
+      setToken(() => data.token);
     });
 
     //new message
@@ -85,52 +87,67 @@ const index = () => {
   };
 
   //next
-  const next = ()=>{
-    socket.disconnect();
-    socket.connect();
-    socket.emit("connect-ran", "data");
-  }
+  const next = () => {
+    if (token) {
+      if (token == 2) {
+      } else {
+        socket.disconnect();
+        socket.connect();
+        socket.emit("connect-ran", "data");
+      }
+    }
+  };
   return (
-    <div className="container">
-      <div className="chat-box">
-        <div className="users-list">
-          <span className="static">Users Online : {users}</span>
-          <span className="static">
-            <b>{status}</b>
-          </span>
+    <>
+      {users == 8 ? (
+        <Loading />
+      ) : (
+        <div className="container">
+          <div className="chat-box">
+            <div className="users-list">
+              <span className="static">Users Online : {users}</span>
+              <span className="static">
+                <b>{status}</b>
+              </span>
+            </div>
+            <div ref={ref} className="msg-box">
+              {messages
+                ? messages.map((msg, i) => {
+                    return (
+                      <div className={msg.class} key={i}>
+                        <div>
+                          {<BiUser />}{" "}
+                          <span>
+                            <b>{msg.class == "right" ? "you" : msg.username}</b>
+                          </span>
+                        </div>
+                        <p className="msg-text">{msg.message}</p>
+                      </div>
+                    );
+                  })
+                : null}
+            </div>
+            <div className="input-box">
+              <button className="next-btn" onClick={next}>
+                Next
+              </button>
+              <input
+                type="text"
+                ref={ref2}
+                onChange={(e) => setMessage(e.target.value)}
+                value={message}
+                {...(disabledd ? disabled : null)}
+              />
+              <AiOutlineSend
+                onClick={sendMessage}
+                className="button"
+                size={25}
+              />
+            </div>
+          </div>
         </div>
-        <div ref={ref} className="msg-box">
-          {messages
-            ? messages.map((msg, i) => {
-                return (
-                  <div className={msg.class} key={i}>
-                    <div>
-                      {<BiUser />}{" "}
-                      <span>
-                        <b>{msg.class == "right" ? "you" : msg.username}</b>
-                      </span>
-                    </div>
-                    <p className="msg-text">{msg.message}</p>
-                  </div>
-                );
-              })
-            : null}
-        </div>
-        <div className="input-box">
-          <button className="next-btn" onClick={next}>
-            Next
-          </button>
-          <input
-            type="text"
-            ref={ref2}
-            onChange={(e) => setMessage(e.target.value)}
-            value={message}
-            {...(disabledd ? disabled : null)}
-          />
-          <AiOutlineSend onClick={sendMessage} className="button" size={25} />
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
