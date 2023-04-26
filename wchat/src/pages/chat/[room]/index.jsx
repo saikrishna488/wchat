@@ -144,6 +144,7 @@ const index = () => {
             type="text"
             ref={ref2}
             onChange={(e) => setMessage(e.target.value)}
+            placeholder='type...'
             value={message}
           />
             <AiOutlineSend  onClick={sendMessage} className="button" size={25}/>

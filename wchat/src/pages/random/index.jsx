@@ -11,7 +11,6 @@ const index = () => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [users, setUsers] = useState(8);
-  const [disabledd, setDisabledd] = useState(false);
   const [token, setToken] = useState(null);
   const [status, setStatus] = useState("");
   const ref = useRef();
@@ -136,7 +135,8 @@ const index = () => {
                 ref={ref2}
                 onChange={(e) => setMessage(e.target.value)}
                 value={message}
-                {...(disabledd ? disabled : null)}
+                placeholder={token == 2 ? 'waiting to connect' : 'type...'}
+                disabled={token == 2 ? true : false}
               />
               <AiOutlineSend
                 onClick={sendMessage}
