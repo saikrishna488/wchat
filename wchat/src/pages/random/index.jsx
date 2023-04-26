@@ -19,10 +19,16 @@ const index = () => {
 
   useEffect(() => {
     if (!sessionStorage.getItem("random")) {
+      socket.close();
       router.push("/");
       return;
     }
 
+    //checking token
+    if(sessionStorage.getItem('token') == 2){
+      socket.emit('invalid-user')
+      socket.disconnect();
+    }
     window.onpopstate = () => {
       socket.close();
     };
@@ -33,7 +39,7 @@ const index = () => {
 
     //connect to server
     if (socket.connected) {
-      socket.emit("reconnected", dRoom);
+      socket.emit("reconnected", "");
       console.log(socket.id);
     } else {
       socket.connect();
@@ -53,6 +59,7 @@ const index = () => {
       sessionStorage.setItem("room", data.room);
       setRoom(() => data.room);
       setToken(() => data.token);
+      sessionStorage.setItem('token',data.token);
     });
 
     //new message

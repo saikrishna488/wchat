@@ -1,10 +1,16 @@
 import { useRouter } from 'next/router'
-import {useState } from 'react'
+import {useEffect, useState } from 'react'
 import Toast from './../components/Toast';
+import { socket } from '../socket/socket';
 
 
 export default function Home() {
   const router = useRouter();
+
+
+  useEffect(()=>{
+    socket.disconnect();
+  },[])
 
   const submit = ()=>{
     sessionStorage.setItem('random','random');
