@@ -35,8 +35,8 @@ const index = () => {
 
       //connect to server
       if(socket.connected) {
-        socket.emit('reconnected',(dRoom));
-        console.log(socket.id);
+        socket.disconnect();
+        router.push('/room');
       }
       else{
         socket.connect();
