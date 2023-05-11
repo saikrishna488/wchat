@@ -18,20 +18,6 @@ npm install express socket.io
 # Configuration
 The backend server can be configured in the server.js file. Here are the main configurations:
 
-Server port: The port on which the server will listen for incoming connections.
-Room ID length: The length of the unique ID for each chat room.
-Maximum number of users per room: The maximum number of users that can join a single chat room.
-User object structure: The structure of the user object that will be sent to the frontend.
-
-# API
-The backend server exposes the following API endpoints:
-
-/api/random: Connects the user to a random user for one-on-one chat.
-/api/room/create: Creates a new chat room with a unique ID.
-/api/room/:roomId/join: Joins an existing chat room with the given ID.
-/api/room/:roomId/leave: Leaves the chat room with the given ID.
-
-
 # Socket.IO events
 Socket.IO enables real-time communication between the browser and the server using events. The following events are used in the chat app:
 
@@ -41,34 +27,28 @@ join-room: Triggered when a user joins a chat room.
 leave-room: Triggered when a user leaves a chat room.
 message: Triggered when a user sends a message in a chat room.
 
-
 # Frontend
 The frontend of the chat app is built using React and Next.js. The app is designed to be responsive and work on both desktop and mobile devices.
 
 # Installation
 To install the frontend dependencies, run the following command:
 
-
 # Copy code
 npm install react next react-dom socket.io-client
-
 
 # Pages
 The app has the following pages:
 
 index.js: The landing page of the app. Allows users to choose between random chat or chat rooms.
 random.js: The page for one-on-one random chat.
-rooms.js: The page for creating or joining chat rooms.
-room.js: The page for a specific chat room.
+[id]/index.js: The page for creating or joining chat rooms.
 
 # Components
 The app has several reusable components that are used across the pages:
 
 Header: The header of the app, which contains the logo and navigation links.
-Footer: The footer of the app, which contains copyright information.
 UserList: A list of users in a chat room.
 ChatBox: The box where messages are displayed and new messages are typed.
-
 
 # Socket.IO client
 The Socket.IO client is used to connect to the backend server and listen for events. The following events are used in the chat app:
